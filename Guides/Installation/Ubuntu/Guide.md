@@ -156,7 +156,7 @@ It has been reported 127.0.0.1 does not work for the hostname.
 >>`GRANT FILE ON *.* TO 'YourMySQLUsername'@'YourMySQLServerHostName';`
 
 >Exit MySQL:
->>`\q`
+>>`quit;`
 
 ### Step 8 *Installing and configuring a web server:*
 >You have many options. We will however show you 2 options, Apache2 or Nginx.
@@ -547,13 +547,14 @@ simple_php_yenc_decode or yydecode installed.
 
 >>>`sudo chmod 775 /var/www`
 
->Clone the git repository:
->>`git clone https://github.com/nZEDb/nZEDb.git`
+>[Install Composer](https://github.com/nZEDb/nZEDb/wiki/Installing-Composer)
 
 >Set the permissions:
 
->During the install (next step of this guide) you should set perms to 777 to make things easier, otherwise you might fail on step 2 of the web install:
->>`sudo chmod -R 777 /var/www/nZEDb/libs/smarty/templates_c`
+>During the setup (next step of this guide) you should set perms to 777 to make things easier, otherwise you might fail on step 2 of the web install:
+>>`sudo chmod -R 755 /var/www/nZEDb/app/libraries`
+
+>>`sudo chmod -R 755 /var/www/nZEDb/libraries`
 
 >>`sudo chmod -R 777 /var/www/nZEDb/resources`
 
