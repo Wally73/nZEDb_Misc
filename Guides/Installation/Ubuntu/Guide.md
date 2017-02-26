@@ -7,7 +7,7 @@ Ubuntu Web Guide.
 `this is an example`
 When you see these, you must type them into a command line interface (terminal window).
 
-> PHP 5.5 and MySQL 5.5 are the minimum required versions,
+> PHP 5.6 and MySQL 5.5 are the minimum required versions,
 but higher versions (MySQL 5.6 to be exact) are recommended. For 32 bit Operating Systems, PHP 5.6+ is required (to fix a bug in a required feature).
 
 ### Step 1 *Updating your operating system:*
@@ -33,25 +33,22 @@ They might already be installed on your operating system.
 >>`sudo apt-get install software-properties-common python-software-properties git`
 
 ### Step 3 *Adding a repository for the minimum supported PHP version:*
->nZEDb supports PHP version 5.5 or higher, if your distro does not have 5.5+, you must add a repository.
+>nZEDb supports PHP version 5.6 or higher, if your distro does not have 5.6+, you must add a repository.
 
->To check the available PHP version, type:
->>`apt-cache policy php5-cli | grep Candidate`
-
->To add php 5.5, type the following commands:
->>`sudo add-apt-repository ppa:ondrej/php5`
-
->>`sudo apt-get update`
-
->*Alternatively*, you can add PHP 5.6 which is the current supported version of PHP, PHP 5.5 will only be getting security updates from now on.
->>`sudo add-apt-repository ppa:ondrej/php5-5.6`
+>To add PHP 5.6 or 7 which are the current supported versions of PHP:
+>>`sudo add-apt-repository ppa:ondrej/php`
 
 >>`sudo apt-get update`
 
 ### Step 4 *Installing PHP and the required extensions:*
 > Note that some extensions might be missing here,
 see INSTALL.txt in the nZEDb docs folder for all the required extensions.
->>`sudo apt-get install php5 php5-cli php5-dev php5-json php-pear php5-gd php5-mysqlnd php5-curl`
+
+> For PHP 5.6:
+>>`sudo apt-get install php-pear php-imagick php5.6 php5.6-cli php5.6-dev php5.6-json php-pear php5.6-gd php5.6-mysql php5.6-pdo php5.6-curl php5.6-common php5.6-mcrypt php5.6-mbstring php5.6-xml`
+
+> For PHP 7:
+>>`sudo apt-get install php-pear php-imagick php7.0 php7.0-cli php7.0-dev php7.0-common php7.0-curl php7.0-json php7.0-gd php7.0-mysql php7.0-mbstring php7.0-mcrypt php7.0-xml`
 
 ### Step 5 **[Mandatory]** *Apparmor:*
 >Apparmor restricts certain programs, on nZEDb it stops us from using the
@@ -164,6 +161,9 @@ Only install Apache2 or Nginx, do not install both to avoid issues.
 
 >*[Apache](http://httpd.apache.org/):*
 >>`sudo apt-get install apache2`
+
+>If you have installed PHP 7, you also need to install the following package:
+>>`sudo apt-get install libapache2-mod-php7.0`
 
 >Now you need to check if you have apache 2.2 or apache 2.4,
 they require a different configuration.
@@ -373,7 +373,7 @@ Save and exit nano.
 
 ### Step 9 *Configuring PHP:*
 
->Open php.ini for the CLI SAPI:
+>Open php.ini for the CLI SAPI (for PHP7 /etc/php7.0/cli/php.ini):
 >>`sudo nano /etc/php5/cli/php.ini`
 
 >Change the following settings:
@@ -395,7 +395,7 @@ Save and exit nano.
 
 >Close and save this file.
 
->Open the Web SAPI php.ini.
+>Open the Web SAPI php.ini (for PHP7 /etc/php7.0/).
 If you have installed Apache2: `sudo nano /etc/php5/apache2/php.ini`
 If you have installed Nginx:   `sudo nano /etc/php5/fpm/php.ini`
 >Change the settings using the same settings as the CLI SAPI.
@@ -610,6 +610,8 @@ nZEDb sites and are throttled so you will get almost no results from those.
 
 >Run the script using screen:
 >>`screen sh simple.sh`
+or
+>>`screen sh simple-expanded.sh` 
 
 >Now everything will run automatically.
 
